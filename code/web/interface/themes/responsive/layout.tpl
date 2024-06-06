@@ -90,7 +90,8 @@
 		</div>
 
 		<div {if !empty($fullWidthTheme)}class="container-fluid"{/if} id="page-header">
-			<div id="header-wrapper" role="banner" class="row {if !empty($fullWidthTheme) || !empty($minimalInterface)}row-no-gutters fullWidth{/if}">
+			{assign var=showLogoAsBanner value=1}
+			<div id="header-wrapper" role="banner" class="row{if !empty($fullWidthTheme) || !empty($minimalInterface)} row-no-gutters fullWidth{/if}{if ($showLogoAsBanner)} header-logo-banner-img{/if}"{if ($showLogoAsBanner)} style="background-image: url('{$responsiveLogo}');"{/if}>
 				{if empty($minimalInterface)}
 					{include file='header_responsive.tpl' minimalInterface=false}
 				{else}

@@ -7955,6 +7955,26 @@ hr.menu {
 #header-wrapper.fullWidth {
   padding: 1em;
 }
+#header-wrapper.header-logo-banner-img {
+  height: 20vh;
+  min-height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 1em;
+  margin-top: 10px;
+  padding-bottom: 0px;
+}
+#header-wrapper.header-logo-banner-img #library-name-header {
+  margin-top: -10px;
+}
+#header-wrapper.header-logo-banner-img.fullWidth {
+  margin: 1em;
+  margin-top: calc(1em + 10px);
+}
+#header-wrapper.header-logo-banner-img.fullWidth #library-name-header {
+  margin-top: -25px;
+}
 @media (max-width: 479px) {
   #header-logo-container {
     text-align: center;

@@ -1,9 +1,11 @@
 {strip}
 
 	<div class="col-tn-12 col-xs-8 col-sm-8 col-md-3 col-lg-3" id="header-logo-container">
-		<a href="{$logoLink}/">
-			<img src="{if !empty($responsiveLogo)}{$responsiveLogo}{else}{img filename="logo_responsive.png"}{/if}" alt="{$librarySystemName|escape}" title="{translate text=$logoAlt inAttribute=true isPublicFacing=true}" id="header-logo" {if !empty($showDisplayNameInHeader) && $librarySystemName}class="pull-left"{/if}>
-		</a>
+		{if !$showLogoAsBanner}
+			<a href="{$logoLink}/">
+				<img src="{if !empty($responsiveLogo)}{$responsiveLogo}{else}{img filename="logo_responsive.png"}{/if}" alt="{$librarySystemName|escape}" title="{translate text=$logoAlt inAttribute=true isPublicFacing=true}" id="header-logo" {if !empty($showDisplayNameInHeader) && $librarySystemName}class="pull-left"{/if}>
+			</a>
+		{/if}
 	</div>
 
     {if ($showDisplayNameInHeader && !empty($librarySystemName)) || !empty($headerText)}
