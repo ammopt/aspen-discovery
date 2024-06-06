@@ -1,12 +1,16 @@
 {strip}
 
+	{function show_logo}
+		<a href="{$logoLink}/">
+			<img src="{if !empty($responsiveLogo)}{$responsiveLogo}{else}{img filename="logo_responsive.png"}{/if}" alt="{$librarySystemName|escape}" title="{translate text=$logoAlt inAttribute=true isPublicFacing=true}" id="header-logo" {if !empty($showDisplayNameInHeader) && $librarySystemName}class="pull-left"{/if}>
+		</a>
+	{/function}
+
 	{* In mobile view this is the top div and spans across the screen *}
 	{* Logo Div *}
     {if ($showDisplayNameInHeader && !empty($librarySystemName)) || !empty($headerText)}
 		<div class="col-tn-12 col-xs-8 col-sm-8 col-md-3 col-lg-3" id="header-logo-container">
-			<a href="{$logoLink}/">
-				<img src="{if !empty($responsiveLogo)}{$responsiveLogo}{else}{img filename="logo_responsive.png"}{/if}" alt="{$librarySystemName|escape}" title="{translate text=$logoAlt inAttribute=true isPublicFacing=true}" id="header-logo" {if !empty($showDisplayNameInHeader) && $librarySystemName}class="pull-left"{/if}>
-			</a>
+			{show_logo}
 		</div>
 		{* Heading Info Div *}
 		<div id="headingInfo" class="hidden-xs hidden-sm col-md-5 col-lg-5">
@@ -27,9 +31,7 @@
 	{else}
 		{* Show the logo full width *}
 		<div class="col-tn-12 col-xs-8 col-sm-8 col-md-8 col-lg-8" id="header-logo-container">
-			<a href="{$logoLink}/">
-				<img src="{if !empty($responsiveLogo)}{$responsiveLogo}{else}{img filename="logo_responsive.png"}{/if}" alt="{$librarySystemName|escape}" title="{translate text=$logoAlt inAttribute=true isPublicFacing=true}" id="header-logo" {if !empty($showDisplayNameInHeader) && $librarySystemName}class="pull-left"{/if}>
-			</a>
+			{show_logo}
 		</div>
 	{/if}
 
