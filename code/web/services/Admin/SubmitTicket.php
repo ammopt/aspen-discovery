@@ -19,7 +19,7 @@ class SubmitTicket extends Admin_Admin {
 			$example1 = $_REQUEST['example1'];
 			$example2 = $_REQUEST['example2'];
 			$example3 = $_REQUEST['example3'];
-			$attachments = $_FILES['attachments'] ?? [];
+			$attachments = $_FILES['attachments']['name'][0] != "" ? $_FILES['attachments'] : [];
 
 			global $serverName;
 			require_once ROOT_DIR . '/sys/Email/Mailer.php';
