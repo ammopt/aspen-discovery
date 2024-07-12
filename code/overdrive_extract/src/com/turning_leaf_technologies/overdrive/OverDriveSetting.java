@@ -9,6 +9,7 @@ import java.util.HashSet;
 public class OverDriveSetting {
 	private final long id;
 	private String clientSecret;
+	private final String serverName;
 	private final String clientKey;
 	private final String accountId;
 	private final String productsKey;
@@ -21,13 +22,9 @@ public class OverDriveSetting {
 	private final HashSet<String> productsToUpdateNextTime = new HashSet<>();
 
 	OverDriveSetting(ResultSet settingRS, String serverName) throws SQLException {
+		this.serverName = serverName;
 		id = settingRS.getLong("id");
-		try {
-			clientSecret = EncryptionUtils.decryptString(settingRS.getString("clientSecret"), serverName, null);
-		}catch (Exception e){
-			System.err.println("Error loading client secret for " + serverName);
-			clientSecret = settingRS.getString("clientSecret");
-		}
+		clientSecret = decryptClientSecret(settingRS.getString("clientSecret"));
 		clientKey = settingRS.getString("clientKey");
 		accountId = settingRS.getString("accountId");
 		productsKey = settingRS.getString("productsKey");
@@ -56,7 +53,16 @@ public class OverDriveSetting {
 	}
 
 	public String getClientSecret() {
-		return clientSecret;
+		return decryptClientSecret(clientSecret);
+	}
+
+	private String decryptClientSecret(String clientSecretString) {
+		try {
+			return EncryptionUtils.decryptString(clientSecretString, serverName, null);
+		}catch (Exception e){
+			System.err.println("Error loading client secret for " + serverName);
+			return clientSecretString;
+		}
 	}
 
 	public String getClientKey() {
